@@ -8,6 +8,8 @@ app.set("view engine", "ejs");
 
 // middleware
 app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get(
   "/",
@@ -26,6 +28,11 @@ app.get("/about", (req, res) => {
 
 app.get("/profile", (req, res) => {
   res.send("Profile page");
+});
+
+app.post("/get-form-data", (req, res) => {
+  console.log(req.body);
+  res.send("Data received successfully");
 });
 
 app.listen(port, (req, res) => {
